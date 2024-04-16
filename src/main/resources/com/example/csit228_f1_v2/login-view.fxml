@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="pnMain" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228_f1_v2.HelloController">
+   <children>
+      <GridPane fx:id="pnLogin" alignment="CENTER" hgap="22.0" vgap="10.0">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" />
+            <ColumnConstraints />
+            <ColumnConstraints halignment="CENTER" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints valignment="CENTER" />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <Label text="Label" GridPane.rowIndex="1" />
+            <TextField minWidth="125.0" prefHeight="28.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Label text="Label" GridPane.rowIndex="3" />
+            <TextField accessibleRole="PASSWORD_FIELD" prefHeight="25.0" prefWidth="59.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" text="Sign In" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: RED;" text="WELCOME TO CITTTTT" textAlignment="CENTER" GridPane.columnSpan="3" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
