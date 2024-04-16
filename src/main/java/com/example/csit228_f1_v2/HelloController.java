@@ -12,23 +12,18 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class HelloController {
-    public GridPane pnLogin;
-    public AnchorPane pnMain;
+    @FXML
+    public VBox pnLogin;
+    @FXML
     public VBox pnHome;
     @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-    @FXML
     protected void onSigninClick() throws IOException {
-        Parent homeview = FXMLLoader.load(HelloApplication.class
+        FXMLLoader homeview = new FXMLLoader(HelloApplication.class
                 .getResource("home-view.fxml"));
+        Parent q = homeview.load();
         AnchorPane p = (AnchorPane) pnLogin.getParent();
         p.getChildren().remove(pnLogin);
-        p.getChildren().add(homeview);
+        p.getChildren().add(q);
 
 
     }
