@@ -78,11 +78,11 @@ public class HelloController {
         FXMLLoader registerview = new FXMLLoader(HelloApplication.class
                 .getResource("register-view.fxml"));
         Parent q = registerview.load();
+        q.minHeight(400);
+        q.minWidth(600);
         AnchorPane p = (AnchorPane) pnLogin.getParent();
         p.getChildren().remove(pnLogin);
         p.getChildren().add(q);
-        q.minWidth(600);
-        q.minHeight(400);
     }
 
     @FXML
