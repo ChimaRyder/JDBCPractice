@@ -1,6 +1,8 @@
 module com.example.csit228_f1_v2 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
+    requires mysql.connector.j;
 
 
     opens com.example.csit228_f1_v2 to javafx.fxml;

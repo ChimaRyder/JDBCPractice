@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228_f1_v2.HelloController">
+   <children>
+      <VBox fx:id="pnRegister" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+          <children>
+              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="40.0" prefWidth="223.0" text="Welcome to Note:ify!">
+                  <font>
+                      <Font name="Fira Code Regular" size="14.0" />
+                  </font>
+              </Label>
+              <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="268.0">
+                  <children>
+                      <Label alignment="CENTER" prefHeight="31.0" prefWidth="66.0" text="First Name" />
+                      <TextField fx:id="fName" prefHeight="25.0" prefWidth="257.0" />
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="268.0">
+                  <children>
+                      <Label alignment="CENTER" prefHeight="31.0" prefWidth="66.0" text="Last Name" />
+                      <TextField fx:id="lName" prefHeight="25.0" prefWidth="257.0" />
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="268.0">
+                  <children>
+                      <Label alignment="CENTER" prefHeight="31.0" prefWidth="66.0" text="Email" />
+                      <TextField fx:id="Email" prefHeight="25.0" prefWidth="257.0" />
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="248.0">
+                  <children>
+                      <Label alignment="CENTER" prefHeight="17.0" prefWidth="68.0" text="Password" />
+                      <PasswordField fx:id="password" prefHeight="25.0" prefWidth="259.0" />
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="248.0">
+                  <children>
+                      <Label alignment="CENTER" prefHeight="17.0" prefWidth="68.0" text="Confirm Password" />
+                      <PasswordField fx:id="confirmPassword" prefHeight="25.0" prefWidth="259.0" />
+                  </children>
+              </HBox>
+              <Button mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="25.0" prefWidth="140.0" text="Sign Up" />
+          </children>
+          <padding>
+              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+          </padding>
+      </VBox>
+   </children>
+</AnchorPane>
