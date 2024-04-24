@@ -37,15 +37,22 @@ public class HelloApplication extends Application {
                     "lname VARCHAR(50) NOT NULL," +
                     "email VARCHAR(100) NOT NULL," +
                     "password BIGINT(8) NOT NULL)";
+            String anotherquery = "CREATE TABLE IF NOT EXISTS tblnotes(" +
+                    "noteID INT PRIMARY KEY AUTO_INCREMENT," +
+                    "userID INT NOT NULL," +
+                    "noteTitle VARCHAR(50) NOT NULL," +
+                    "noteContent VARCHAR(255) NOT NULL," +
+                    "dateCreated VARCHAR(20) NOT NULL)";
             Statement statement = c.createStatement();
             statement.execute(query);
+            statement.execute(anotherquery);
             System.out.println("DATABASE CREATED.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
         stage.setTitle("Note:ify");
         stage.setScene(scene);
         stage.show();

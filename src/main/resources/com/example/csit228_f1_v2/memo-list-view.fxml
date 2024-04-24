@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228_f1_v2.HelloController">
+   <children>
+      <TabPane fx:id="pnMemoList" prefHeight="450.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="pnListTab" onSelectionChanged="#OnFocusedListTab" text="Note List">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="421.0" prefWidth="600.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <ScrollPane prefHeight="200.0" prefWidth="600.0">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="600.0">
+                                             <children>
+                                                <VBox fx:id="pnScroll" prefHeight="200.0" prefWidth="600.0" />
+                                             </children></AnchorPane>
+                                      </content>
+                                    </ScrollPane>
+                                 </children></AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <VBox prefHeight="208.0" prefWidth="600.0">
+                                       <children>
+                                          <Label text="Title">
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding></Label>
+                                          <TextField fx:id="tfDisplayTitle" onKeyPressed="#CheckTitleChange" />
+                                          <Label text="Note">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" top="10.0" />
+                                             </VBox.margin></Label>
+                                          <TextArea fx:id="tfDisplayContent" onKeyPressed="#CheckContentChange" prefHeight="132.0" prefWidth="579.0" />
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="579.0" spacing="10.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#OnEditNote" prefHeight="26.0" prefWidth="131.0" text="Edit">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnDeleteNote" prefHeight="57.0" prefWidth="147.0" text="Delete Note" />
+                                             </children>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </HBox>
+
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Add a Note">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="421.0" prefWidth="600.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="14.0" prefWidth="614.0" text="What's on your mind, User?">
+                                 <font>
+                                    <Font name="Arial Bold" size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Title" />
+                              <TextField fx:id="tfTitle" />
+                              <Label text="Note" />
+                              <TextArea fx:id="tfContent" prefHeight="200.0" prefWidth="600.0" />
+                              <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="579.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#OnCreateNewNote" prefHeight="26.0" prefWidth="158.0" text="Save" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        <Tab text="User Settings">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="423.0" prefWidth="600.0" spacing="10.0">
+                           <children>
+                              <HBox prefHeight="38.0" prefWidth="600.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change Name" />
+                                    <TextField prefHeight="26.0" prefWidth="319.0" />
+                                 </children>
+                              </HBox>
+                               <HBox prefHeight="38.0" prefWidth="600.0">
+                                   <children>
+                                       <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change Password" />
+                                       <TextField prefHeight="26.0" prefWidth="319.0" />
+                                   </children>
+                               </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="579.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="186.0" text="Delete my Account" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding></VBox>
+                     </children></AnchorPane>
+            </content>
+        </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

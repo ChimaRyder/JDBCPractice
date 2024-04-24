@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228_f1_v2.HelloController">
    <children>
-      <VBox fx:id="pnLogin" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+      <VBox fx:id="pnLogin" alignment="CENTER" prefHeight="600.0" prefWidth="600.0">
          <children>
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="40.0" prefWidth="223.0" text="Sign In!">
                <font>
