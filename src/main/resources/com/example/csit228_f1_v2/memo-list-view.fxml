@@ -96,7 +96,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-        <Tab text="User Settings">
+        <Tab fx:id="pnUserTab" onSelectionChanged="#OnFocusUserTab" text="User Settings">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -104,19 +104,27 @@
                            <children>
                               <HBox prefHeight="38.0" prefWidth="600.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change Name" />
-                                    <TextField prefHeight="26.0" prefWidth="319.0" />
+                                    <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change First Name" />
+                                    <TextField fx:id="settingsfName" onKeyPressed="#FNameChange" prefHeight="26.0" prefWidth="319.0" />
                                  </children>
                               </HBox>
                                <HBox prefHeight="38.0" prefWidth="600.0">
                                    <children>
-                                       <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change Password" />
-                                       <TextField prefHeight="26.0" prefWidth="319.0" />
+                                       <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change Last Name" />
+                                       <TextField fx:id="settingslName" onKeyPressed="#LNameChange" prefHeight="26.0" prefWidth="319.0" />
                                    </children>
                                </HBox>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="579.0">
+                               <HBox prefHeight="38.0" prefWidth="600.0">
+                                   <children>
+                                       <Label alignment="CENTER" prefHeight="25.0" prefWidth="148.0" text="Change Password" />
+                                    <PasswordField fx:id="settingsPassword" onKeyPressed="#PasswordChange" prefHeight="26.0" prefWidth="319.0" />
+                                   </children>
+                               </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="579.0" spacing="10.0">
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="186.0" text="Delete my Account" />
+                                    <Button mnemonicParsing="false" onAction="#OnSaveUserSettings" text=" Save Settings" />
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAccount" prefHeight="26.0" prefWidth="186.0" text="Delete my Account" />
+                                    <Button mnemonicParsing="false" onAction="#OnLogOut" prefHeight="26.0" prefWidth="121.0" text="Log Out" />
                                  </children>
                               </HBox>
                            </children>

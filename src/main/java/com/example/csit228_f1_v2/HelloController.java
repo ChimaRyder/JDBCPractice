@@ -21,6 +21,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class HelloController {
@@ -127,6 +128,7 @@ public class HelloController {
                      "INSERT into tbluser(fname, lname, email, password) values(?, ?, ?, ?)"
              );
         ) {
+            c.setAutoCommit(false);
             String query = "SELECT * from tbluser WHERE email = '" + em + "'";
             Statement statement = c.createStatement();
             ResultSet res = statement.executeQuery(query);
@@ -143,6 +145,7 @@ public class HelloController {
                     registerstatement.setInt(4, p);
 
                     int result = registerstatement.executeUpdate();
+                    c.commit();
                     System.out.println("Inserted " + result + " rows!");
 
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -272,8 +275,9 @@ public class HelloController {
         ) {
             c.setAutoCommit(false);
             p.setInt(1, currentNote);
-            c.commit();
             int deleted = p.executeUpdate();
+            c.commit();
+
             System.out.println("deleted " + deleted + " notes!");
             needsRefresh = true;
 
@@ -335,15 +339,135 @@ public class HelloController {
         contentChanged = true;
     }
 
-    public Tab UserTab;
-    private boolean UserNeedsRefresh = false;
+    @FXML
+    public Tab pnUserTab;
+    public TextField settingsfName;
+    public TextField settingslName;
+    public TextField settingsPassword;
+    private boolean UserNeedsRefresh = true;
+    private boolean fNameChange = false;
+    private boolean lNameChange = false;
+    private boolean passwordChange = false;
+
+
     @FXML
     protected void OnFocusUserTab() {
+        if (pnUserTab.isSelected() && UserNeedsRefresh)
        try (Connection c = MySQLConnection.getConnection();
+            PreparedStatement p = c.prepareStatement(
+                    "SELECT fName, lName from tbluser WHERE id = ?"
+            )
        ) {
+
+           p.setInt(1, loggedinUser);
+           ResultSet res = p.executeQuery();
+
+           while(res.next()) {
+              settingsfName.setText(res.getString("fName"));
+              settingslName.setText(res.getString("lName"));
+              break;
+           }
+
+           UserNeedsRefresh = false;
 
        } catch (SQLException e) {
            throw new RuntimeException(e);
        }
+    }
+
+    @FXML
+    protected void FNameChange() {
+       fNameChange = true;
+    }
+
+    @FXML
+    protected void LNameChange() {
+        lNameChange = true;
+    }
+
+    @FXML
+    protected void PasswordChange() {
+        passwordChange = true;
+    }
+
+    @FXML
+    protected void OnSaveUserSettings() {
+
+        try (Connection c = MySQLConnection.getConnection();
+             Statement statement = c.createStatement();
+        ) {
+            c.setAutoCommit(false);
+
+            if (fNameChange) {
+                statement.addBatch("UPDATE tbluser SET fName = '" + settingsfName.getText() + "' WHERE id = " + loggedinUser);
+            }
+
+            if (lNameChange) {
+                statement.addBatch("UPDATE tbluser SET lName = '" + settingslName.getText() + "' WHERE id = " + loggedinUser);
+            }
+
+            if (passwordChange) {
+                statement.addBatch("UPDATE tbluser SET password = '" + settingsPassword.getText().hashCode() + "' WHERE id = " + loggedinUser);
+            }
+
+            int[] updated = statement.executeBatch();
+            c.commit();
+            for (int i = 0; i < updated.length; i++) {
+                System.out.println("Updated " + updated[i] + "rows!");
+            }
+            UserNeedsRefresh = true;
+
+            OnFocusUserTab();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    protected void DeleteAccount() {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("You are about to delete your account. All your content will be lost. Continue?");
+        a.setHeaderText("Account Deletion");
+        Optional<ButtonType> bt = a.showAndWait();
+        if (bt.get() == ButtonType.OK) {
+            try (Connection c = MySQLConnection.getConnection();
+                 Statement p = c.createStatement();
+            ) {
+                c.setAutoCommit(false);
+                p.addBatch("DELETE from tbluser WHERE id = " + loggedinUser);
+                p.addBatch("DELETE from tblnotes WHERE userID = " + loggedinUser);
+                int[] deleted = p.executeBatch();
+                c.commit();
+
+                for (int i = 0; i < deleted.length; i++) {
+                    System.out.println("Deleted " + deleted[i] + " rows!");
+                }
+                //move back to login
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+                Parent q = fxmlLoader.load();
+                AnchorPane t = (AnchorPane) pnMemoList.getParent();
+                t.getChildren().remove(pnMemoList);
+                t.getChildren().add(q);
+
+                Alert g = new Alert(Alert.AlertType.INFORMATION);
+                g.setHeaderText("Account Successfully Deleted");
+                g.setContentText("Your account has been successfully deleted. We're sad to see you go.");
+                g.showAndWait();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    @FXML
+    protected void OnLogOut() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        Parent q = fxmlLoader.load();
+        AnchorPane t = (AnchorPane) pnMemoList.getParent();
+        t.getChildren().remove(pnMemoList);
+        t.getChildren().add(q);
+
+        loggedinUser = -1;
     }
 }
