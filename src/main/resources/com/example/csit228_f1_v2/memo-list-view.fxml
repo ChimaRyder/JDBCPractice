@@ -42,7 +42,7 @@
                                           <TextArea fx:id="tfDisplayContent" onKeyPressed="#CheckContentChange" prefHeight="132.0" prefWidth="579.0" />
                                           <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="579.0" spacing="10.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#OnEditNote" prefHeight="26.0" prefWidth="131.0" text="Edit">
+                                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnEditNote" prefHeight="26.0" prefWidth="131.0" text="Edit">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -85,7 +85,7 @@
                               <TextArea fx:id="tfContent" prefHeight="200.0" prefWidth="600.0" />
                               <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="579.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#OnCreateNewNote" prefHeight="26.0" prefWidth="158.0" text="Save" />
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnCreateNewNote" prefHeight="26.0" prefWidth="158.0" text="Save" />
                                  </children>
                               </HBox>
                            </children>
@@ -122,9 +122,9 @@
                                </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="579.0" spacing="10.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#OnSaveUserSettings" text=" Save Settings" />
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnSaveUserSettings" text=" Save Settings" />
                                     <Button alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAccount" prefHeight="26.0" prefWidth="186.0" text="Delete my Account" />
-                                    <Button mnemonicParsing="false" onAction="#OnLogOut" prefHeight="26.0" prefWidth="121.0" text="Log Out" />
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnLogOut" prefHeight="26.0" prefWidth="121.0" text="Log Out" />
                                  </children>
                               </HBox>
                            </children>
