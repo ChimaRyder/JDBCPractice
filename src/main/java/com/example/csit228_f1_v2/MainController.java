@@ -10,21 +10,17 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
-import javafx.util.converter.FormatStringConverter;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Optional;
-import java.util.Scanner;
 
-public class HelloController {
+public class MainController {
 
     static int loggedinUser;
     @FXML
@@ -72,7 +68,7 @@ public class HelloController {
                 int hashpass = res.getInt("password");
                 if (lp.hashCode() == hashpass){
                     loggedinUser = res.getInt("id");
-                    FXMLLoader memolistview = new FXMLLoader(HelloApplication.class
+                    FXMLLoader memolistview = new FXMLLoader(MainApp.class
                         .getResource("memo-list-view.fxml"));
                     Parent q = memolistview.load();
                     AnchorPane p = (AnchorPane) pnLogin.getParent();
@@ -97,13 +93,21 @@ public class HelloController {
 
     @FXML
     protected void onLogintoRegister() throws IOException {
-        FXMLLoader registerview = new FXMLLoader(HelloApplication.class
+        FXMLLoader registerview = new FXMLLoader(MainApp.class
                 .getResource("register-view.fxml"));
         Parent q = registerview.load();
-        q.minHeight(400);
-        q.minWidth(600);
         AnchorPane p = (AnchorPane) pnLogin.getParent();
         p.getChildren().remove(pnLogin);
+        p.getChildren().add(q);
+    }
+
+    @FXML
+    protected void onRegistertoLogin() throws IOException {
+        FXMLLoader loginview = new FXMLLoader(MainApp.class
+                .getResource("login-view.fxml"));
+        Parent q = loginview.load();
+        AnchorPane p = (AnchorPane) pnRegister.getParent();
+        p.getChildren().remove(pnRegister);
         p.getChildren().add(q);
     }
 
@@ -153,7 +157,7 @@ public class HelloController {
                     a.setContentText("Your account has been created! Please login.");
                     a.showAndWait();
 
-                    FXMLLoader loginview = new FXMLLoader(HelloApplication.class
+                    FXMLLoader loginview = new FXMLLoader(MainApp.class
                             .getResource("login-view.fxml"));
                     Parent q = loginview.load();
                     AnchorPane t = (AnchorPane) pnRegister.getParent();
@@ -228,8 +232,9 @@ public class HelloController {
                     });
 
                     pnScroll.getChildren().add(h);
-                    needsRefresh = false;
                 }
+                needsRefresh = false;
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -443,7 +448,7 @@ public class HelloController {
                     System.out.println("Deleted " + deleted[i] + " rows!");
                 }
                 //move back to login
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login-view.fxml"));
                 Parent q = fxmlLoader.load();
                 AnchorPane t = (AnchorPane) pnMemoList.getParent();
                 t.getChildren().remove(pnMemoList);
@@ -462,7 +467,7 @@ public class HelloController {
 
     @FXML
     protected void OnLogOut() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login-view.fxml"));
         Parent q = fxmlLoader.load();
         AnchorPane t = (AnchorPane) pnMemoList.getParent();
         t.getChildren().remove(pnMemoList);

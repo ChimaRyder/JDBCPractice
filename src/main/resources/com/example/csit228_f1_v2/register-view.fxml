@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228_f1_v2.HelloController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228_f1_v2.MainController">
    <children>
-      <VBox fx:id="pnRegister" alignment="CENTER" prefHeight="600.0" prefWidth="600.0">
+      <VBox fx:id="pnRegister" alignment="CENTER" prefHeight="450.0" prefWidth="600.0">
           <children>
               <Label alignment="CENTER" contentDisplay="TOP" prefHeight="40.0" prefWidth="223.0" text="Welcome to Note:ify!">
                   <font>
@@ -45,6 +45,11 @@
                   </children>
               </HBox>
               <Button mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="25.0" prefWidth="140.0" text="Sign Up" />
+            <Hyperlink onAction="#onRegistertoLogin" text="Already have an account? Login!">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Hyperlink>
           </children>
           <padding>
               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
